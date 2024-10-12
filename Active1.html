@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Inheritance and Static Method Example</title>
+</head>
+<body>
+    <h1>Class Inheritance and Static Method Example</h1>
+
+    <!-- Button to trigger the display of class properties -->
+    <button onclick="displayProperties()">Display Class Properties</button>
+
+    <!-- Div to display the output -->
+    <div id="output"></div>
+
+    <script>
+        // Parent class
+        class Person {
+            // Constructor with properties
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            // Static method to display a greeting
+            static greet() {
+                return "Hello! Welcome to the static method.";
+            }
+
+            // Method to display person details
+            displayDetails() {
+                return `Name: ${this.name}, Age: ${this.age}`;
+            }
+        }
+
+        // Child class that inherits from Person
+        class Student extends Person {
+            constructor(name, age, grade) {
+                super(name, age);  // Call parent class constructor
+                this.grade = grade;  // New property for Student class
+            }
+
+            // Method to display student details, extending the parent class method
+            displayDetails() {
+                return `${super.displayDetails()}, Grade: ${this.grade}`;
+            }
+        }
+
+        // Function to display the properties and static method of the class
+        function displayProperties() {
+            // Create an instance of Student class
+            let student = new Student("John", 20, "A");
+
+            // Access and display static method
+            let greeting = Person.greet();
+
+            // Access and display instance properties using a method
+            let studentDetails = student.displayDetails();
+
+            // Display the output in the HTML
+            document.getElementById("output").innerHTML = 
+                `<p>${greeting}</p>` +
+                `<p>Student Details: ${studentDetails}</p>`;
+        }
+    </script>
+</body>
+</html>
